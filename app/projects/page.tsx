@@ -1,8 +1,29 @@
-export default function ProjectsOverviewPage() {
+import { Project } from "@/lib/projects-db";
+
+async function getProjects(): Promise<Project[]> {
+  const res = await fetch("http://localhost:3000/api/projects", {
+    cache: "no-store",
+  });
+  return res.json();
+}
+
+export default async function ProjectsOverviewPage() {
+  const projects = await getProjects();
+
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-2">Resumen de proyectos</h1>
-      <p className="text-gray-600 dark:text-gray-300">Bienvenido a la sección general de mis proyectos.</p>
+      <h1 className="text-2xl font-bold mb-2">Projects Overview</h1>
+      <p className="text-gray-600 dark:text-gray-300 mb-6">
+        Welcome to the general section of my projects.
+      </p>
+      <ul className="space-y-4">
+        {projects.map((project) => (
+          <li key={project.id} className="border rounded p-4">
+            <h2 className="font-semibold">{project.title}</h2>
+            <p className="text-sm text-gray-600">{project.description}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
