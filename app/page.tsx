@@ -1,12 +1,12 @@
-import Footer from "@/components/Footer";
+
 import About from "@/components/About";
-import Header from "@/components/Header";
+
 import Projects from "@/components/Projects";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50 pb-10">
-      <Header />
+      
       <div className="max-w-4xl mx-auto p-6 text-center mt-10">
         <h2 className="text-3xl font-bold text-gray-800">
           Insurance & Development Professional Portfolio
@@ -17,7 +17,7 @@ export default function Home() {
       </div>
       <About />
       <Projects />
-      <Footer />
+      
     </main>
   );
 }
